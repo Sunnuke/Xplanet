@@ -58,9 +58,10 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
-    followers = models.ManyToManyField(User, related_name="following")
     # comments
     # user_comments
     # posts_liked
     # posts_disliked
+    # user_profile
+    # followers
     # following

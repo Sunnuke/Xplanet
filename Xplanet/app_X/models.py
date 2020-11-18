@@ -22,4 +22,7 @@ class Comment(models.Model):
 
 # Profile
 class Profile(models.Model):
-    user = models.ManyToManyField(User, related_name=followers
+    user = models.OneToOneField(User, related_name="user_profile", on_delete=models.CASCADE)
+    # image = models.ImageField(null=True)
+    followed = models.ManyToManyField(User, related_name="followers")
+    followers = models.ManyToManyField(User, related_name="following")
