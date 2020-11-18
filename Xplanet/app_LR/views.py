@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .models import User
+from app_X.models import Profile
 from django.contrib import messages
 import bcrypt
 
@@ -29,9 +30,8 @@ def register(request):
             email=request.POST['email'],
             password=pw_hash
         )
-        request.session['user'] = user.id
-        test = User.objects.get(id=user.id)
-        print("first_name:",test.first_name, "last_name:",test.last_name, "email:",test.email, "password:",test.password)
+        profile = Profile.objects.create(user=user)
+        request.session['user'] = profile.id
     return redirect('/success')
 
 # Login Route
@@ -49,7 +49,8 @@ def login(request):
     else:
         print('No errors')
         user = User.objects.get(email=request.POST['email'])
-        request.session['user'] = user.id
+        profile = Profile.objects.get(user=user)
+        request.session['user'] = profile.id
     return redirect('/success')
 
 # Logged In/ Registered Route
