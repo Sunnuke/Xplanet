@@ -24,5 +24,5 @@ class Comment(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name="user_profile", on_delete=models.CASCADE)
     # image = models.ImageField(null=True)
-    followed = models.ManyToManyField("self", related_name="followers")
-    followers = models.ManyToManyField("self", related_name="following")
+    following = models.ManyToManyField('self', related_name="you_followed", symmetrical=False)
+    followers = models.ManyToManyField('self', related_name="who_follows", symmetrical=False)
