@@ -17,10 +17,12 @@ def xplanet(request):
 def dashboard(request):
     context = {
         'User': Profile.objects.get(id=request.session['user']),
+        'User_liked': Profile.objects.get(id=request.session['user']).posts_liked.all().order_by("-id"),
+        'User_comments': Profile.objects.get(id=request.session['user']).profile_comments.all().order_by("-id"),
+        'Posts': Profile.objects.get(id=request.session['user']).posts.all().order_by("-id"),
         'Following': Profile.objects.get(id=request.session['user']).following.all(),
         'Followers': Profile.objects.get(id=request.session['user']).followers.all(),
-        'status': request.session['word'],
-        'Posts': Post.objects.all()
+        'status': request.session['word']
     }
     return render(request, 'dashboard.html', context)
 
