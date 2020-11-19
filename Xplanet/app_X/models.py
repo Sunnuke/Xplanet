@@ -5,6 +5,7 @@ from app_LR.models import User
 
 # Profile
 class Profile(models.Model):
+    name = models.CharField(max_length=30, default="New Comer")
     user = models.OneToOneField(User, related_name="user_profile", on_delete=models.CASCADE)
     # image = models.ImageField(null=True)
     following = models.ManyToManyField('self', related_name="you_followed", symmetrical=False)

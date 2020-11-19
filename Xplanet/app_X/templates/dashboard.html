@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xplanet</title>
+    {% load static %}
+</head>
+<body>
+    <div id="bodyBox">
+        <div id="navBox">
+            <img src="{% static 'img/Xplanet_2.png' %}" alt="Xplanet Icon">
+            <nav>
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Dashboard</a></li>
+                    <li><a href="">Humans</a></li>
+                    <li><a href="">Forums</a></li>
+                    <li><a href="">News</a></li>
+                    <li><a href="">Settings</a></li>
+                    <li>|</li>
+                    <li><a href="">Log Out</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="sideBox">
+            <h2>Humans You Follow:</h2>
+            <ul>
+                {% if Following %}
+                    {% for human in Following %}
+                        <li><a href="">{{ human }}</a></li>
+                    {% endfor %}
+                {%  %}
+                {% endif %}
+            </ul>
+        </div>
+        <div id="contentBox"></div>
+        <div id="footBox"></div>
+    </div>
+</body>
+</html>

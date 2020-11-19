@@ -3,26 +3,43 @@ from .models import *
 
 
 # Create your views here.
-def xplanet(request):
-    return HttpResponse('Hi Human')
 
+# WISE WELCOME_________
+def xplanet(request):
+    context = {
+        'User': Profile.objects.get(id=request.session['user']),
+        'status': request.session['word'],
+    }
+    return render(request, 'wisewelcome.html', context)
+
+
+# DASHBOARD PAGE FUNCTIONS________
+def dashboard(request):
+    context = {
+        'User': Profile.objects.get(id=request.session['user']),
+        'Following': Profile.objects.get(id=request.session['user']).following.all(),
+        'Followers': Profile.objects.get(id=request.session['user']).followers.all(),
+        'status': request.session['word'],
+        'Posts': Post.objects.all()
+    }
+    return render(request, 'dashboard.html', context)
+
+
+# FORUM PAGE FUNCTIONS _________
 def forum(request):
-    # context = {
-    #     'User': User.objects.get(id=request.session['user']),
-    #     'status': request.session['word'],
-    #     'Posts': Post.objects.all()
-    # }
-    # return render(request, '', context)
-    pass
+    context = {
+        'User': Profile.objects.get(id=request.session['user']),
+        'status': request.session['word'],
+        'Posts': Post.objects.all()
+    }
+    return render(request, 'forum.html', context)
 
 def post(request):
     Post.objects.create(
         message=request.POST['post'],
         user=User.objects.get(id=request.session['user'])
     )
-    # return redirect('')
-    pass
-
+    return redirect('/xplanet/forum')
 
 def comment(request):
     Comment.objects.create(
@@ -30,10 +47,9 @@ def comment(request):
         user=User.objects.get(id=request.session['user']),
         comment=request.POST['comment']
     )
-    # return redirect('')
+    return redirect('/xplanet/forum')
 
 def delete(request):
     c = Post.objects.get(id=request.POST['delkey'])
     c.delete()
-    # return redirect('')
-    pass
+    return redirect('/xplanet/forum')

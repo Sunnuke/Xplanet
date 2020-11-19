@@ -56,7 +56,7 @@ def login(request):
 # Logged In/ Registered Route
 def success(request):
     context = {
-        'User': User.objects.get(id=request.session['user']),
+        'User': Profile.objects.get(id=request.session['user']),
         'status': request.session['word']
     }
     return render(request, 'success.html', context)

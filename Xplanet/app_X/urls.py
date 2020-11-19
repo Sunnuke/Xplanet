@@ -2,8 +2,12 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # User Dashboard
+    # Wise Welcome
     path('', views.xplanet),
+
+    # User Dashboard
+    path('dashboard', views.dashboard),
+
     # Forum Routes
     path('forum', views.forum),
     path('post', views.post),
