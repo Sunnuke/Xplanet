@@ -2,7 +2,7 @@ from django.db import models
 from app_LR.models import User
 # Create your models here.
 
-# Forum Validater
+# Forum Validator
 class ForumManager(models.Manager):
     def valid_post(self, postData):
         errors = {}
@@ -18,6 +18,13 @@ class ForumManager(models.Manager):
             errors['comment'] = "The Comment Must Be at Least 3 characters Long!"
         return errors
 
+# Profile Name Validator
+class ProfileManager(models.Manager):
+    def valid_Name(self, postData):
+        errors = {}
+        if len(postData['proname']) < 3:
+            errors['proname'] = "Your Profile Name Must Be at Least 3 characters Long!"
+        return errors
 
 # Profile
 class Profile(models.Model):
@@ -27,6 +34,7 @@ class Profile(models.Model):
     # image = models.ImageField(null=True)
     following = models.ManyToManyField('self', related_name="you_followed", symmetrical=False)
     followers = models.ManyToManyField('self', related_name="who_follows", symmetrical=False)
+    objects = ProfileManager()
     # posts
     # posts_liked
     # posts_disliked

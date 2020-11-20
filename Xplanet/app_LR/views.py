@@ -7,10 +7,10 @@ import bcrypt
 # Create your views here.
 
 def indexReg(request):
-    return render(request, 'index.html')
+    return render(request, 'indexReg.html')
 
 def indexLog(request):
-    return render(request, 'index.html')
+    return render(request, 'indexLog.html')
 
 # Register Route
 def register(request):
@@ -54,15 +54,27 @@ def login(request):
         user = User.objects.get(email=request.POST['email'])
         profile = Profile.objects.get(user=user)
         request.session['user'] = profile.id
-    return redirect('/success')
+    return redirect('/xplanet/dashboard')
 
-# Logged In/ Registered Route
+# Registered/New Profile Name Route
 def success(request):
     context = {
         'User': Profile.objects.get(id=request.session['user']),
         'status': request.session['word']
     }
     return render(request, 'success.html', context)
+
+def ProName(request):
+    errors = Profile.objects.valid_Name(request.POST)
+    if len(errors) > 0:
+        for key, val in errors.items():
+            messages.error(request, val)
+        return redirect('/success')
+    else:
+        profile = Profile.objects.get(id=request.session['user'])
+        profile.name=request.POST['proname']
+        profile.save()
+    return redirect('/xplanet/dashboard')
 
 # Logout Route
 def logout(request):

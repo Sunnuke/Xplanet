@@ -17,4 +17,7 @@ urlpatterns = [
     path('editpost', views.editpost),
     path('comment', views.comment),
     path('delete', views.delete),
+
+    # Settings
+    path('delete', views.delete),
 ]
