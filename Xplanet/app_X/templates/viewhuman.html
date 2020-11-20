@@ -14,9 +14,8 @@
             <img src="{% static 'img/out6.png' %}" alt="Xplanet Icon">
             <nav>
                 <ul>
-                    <li><a href="#" style="color: rgb(0, 255, 85);">Viewing A User</a></li>
                     <li><a href="/xplanet" class="li">Home</a></li>
-                    <li><a href="/xplanet/dashboard" class="li">Dashboard</a></li>
+                    <li><a href="/xplanet/dashboard" style="color: rgb(0, 255, 85);">Dashboard</a></li>
                     <li><a href="/xplanet/humans" class="li">Humans</a></li>
                     <li><a href="/xplanet/forum" class="li">Forums</a></li>
                     <li><a href="/xplanet/news" class="li">News</a></li>
@@ -38,7 +37,7 @@
                                     {% if User.id == human.id %}
                                         <li style="color: cyan;">{{ human.name }}</li><br>
                                     {% else %}
-                                        <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li><br>
+                                        <li><a class="folg" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li><br>
                                     {% endif %}
                                 {% endfor %}
                             {% else %}
@@ -54,7 +53,7 @@
                             {% if Followers %}
                                 {% for human in Followers %}
                                     {% if User.id != human.id %}
-                                        <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li><br>
+                                        <li><a class="fol" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li><br>
                                     {% else %}
                                         <li style="text-shadow: 0px 0px 10px rgb(0, 255, 0)">{{ human.name }} - You</li><br>
                                     {% endif %}
@@ -65,7 +64,20 @@
                         </ul>
                     </div>
                 </div>
-                <img src="{% static 'img/X2.png' %}">
+                <br><marquee behavior="scroll" direction="left" scrollamount="13"><img src="{% static 'img/X.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="right" scrollamount="11"><img src="{% static 'img/p.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="left" scrollamount="1"><img src="{% static 'img/l.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="right" scrollamount="7"><img src="{% static 'img/a.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="left" scrollamount="5"><img src="{% static 'img/n.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="right" scrollamount="9"><img src="{% static 'img/e.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="left" scrollamount="3"><img src="{% static 'img/t.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="right" scrollamount="13"><img src="{% static 'img/X.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="left" scrollamount="11"><img src="{% static 'img/p.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="right" scrollamount="1"><img src="{% static 'img/l.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="left" scrollamount="7"><img src="{% static 'img/a.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="right" scrollamount="5"><img src="{% static 'img/n.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="left" scrollamount="9"><img src="{% static 'img/e.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="right" scrollamount="3"><img src="{% static 'img/t.png' %}"></marquee><br>
             </div>
             <!-- CONTENT -->
             <div id="contentBox">
@@ -79,7 +91,7 @@
                     <div class="quicklinks">
                         <ul>
                             <li>Dash links:</li>
-                            <li><a href="#upost">Their Posts</a></li>
+                            <li><a href="#post">Their Posts</a></li>
                             <li><a href="#liked">Posts They Liked</a></li>
                             <li><a href="#comments">Comments They Made</a></li>
                         </ul>

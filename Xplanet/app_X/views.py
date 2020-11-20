@@ -67,19 +67,31 @@ def post(request):
         )
     return redirect('/xplanet/forum')
 
+def viewpost(request, num):
+    if 'user' not in request.session:
+        return redirect('/xplanet/no_user')
+    context = {
+        'User': Profile.objects.get(id=request.session['user']),
+        'status': request.session['word'],
+        'Post': Post.objects.get(id=num),
+        'Following': Profile.objects.get(id=request.session['user']).following.all(),
+        'Followers': Profile.objects.get(id=request.session['user']).followers.all(),
+    }
+    return render(request, 'postview.html', context)
+
 def editpost(request):
     request.session['word'] = 'post'
     errors = Post.objects.valid_post(request.POST)
     if len(errors) > 0:
         for key, val in errors.items():
             messages.error(request, val)
-        return redirect('/xplanet/forum')
+        return redirect('/xplanet/viewpost/'+request.POST['ekey'])
     else:
-        post = Post.objects.get(id=request.POST['postID'])
+        post = Post.objects.get(id=request.POST['ekey'])
         post.post=request.POST['post']
         post.title=request.POST['title']
         post.save()
-    return redirect('/xplanet/forum')
+    return redirect('/xplanet/viewpost/'+request.POST['ekey'])
 
 def comment(request):
     request.session['word'] = 'comment'

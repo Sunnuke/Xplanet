@@ -34,7 +34,7 @@
                         <ul>
                             {% if Following %}
                                 {% for human in Following %}
-                                    <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li>
+                                    <li><a class="folg" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li><br>
                                 {% endfor %}
                             {% else %}
                                 <li>No humans here!</li>
@@ -48,7 +48,7 @@
                         <ul>
                             {% if Followers %}
                                 {% for human in Followers %}
-                                    <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li>
+                                    <li><a class="fol" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li><br>
                                 {% endfor %}
                             {% else %}
                                 <li>No humans here!</li>
@@ -56,16 +56,16 @@
                         </ul>
                     </div>
                 </div>
-                <marquee behavior="scroll" direction="left" scrollamount="5"><img src="{% static 'img/DOOM.jpg' %}"></marquee>
-                <marquee behavior="scroll" direction="right" scrollamount="5"><img src="{% static 'img/fadd02.jpg' %}"></marquee>
-                <marquee behavior="scroll" direction="left" scrollamount="3"><img src="{% static 'img/fortnite.jpg' %}"></marquee>
-                <marquee behavior="scroll" direction="right" scrollamount="10"><img src="{% static 'img/X1.png' %}"></marquee>
-                <marquee behavior="scroll" direction="left" scrollamount="10"><img src="{% static 'img/halo.jpeg' %}"></marquee>
-                <marquee behavior="scroll" direction="left" scrollamount="5"><img src="{% static 'img/fadd01.jpg' %}"></marquee>
-                <marquee behavior="scroll" direction="right" scrollamount="5"><img src="{% static 'img/pokemonsh.jpg' %}"></marquee>
-                <marquee behavior="scroll" direction="left" scrollamount="3"><img src="{% static 'img/fadd03.jpg' %}"></marquee>
-                <marquee behavior="scroll" direction="right" scrollamount="10"><img src="{% static 'img/spiderman.jpg' %}"></marquee>
-                <marquee behavior="scroll" direction="left" scrollamount="10"><img src="{% static 'img/X1.png' %}"></marquee>
+                <marquee behavior="scroll" direction="left" scrollamount="9"><img src="{% static 'img/DOOM.jpg' %}"></marquee>
+                <marquee behavior="scroll" direction="right" scrollamount="9"><img src="{% static 'img/fadd02.jpg' %}"></marquee>
+                <marquee behavior="scroll" direction="left" scrollamount="6"><img src="{% static 'img/fortnite.jpg' %}"></marquee>
+                <marquee behavior="scroll" direction="right" scrollamount="15"><img src="{% static 'img/X1.png' %}"></marquee>
+                <marquee behavior="scroll" direction="left" scrollamount="15"><img src="{% static 'img/halo.jpeg' %}"></marquee>
+                <marquee behavior="scroll" direction="left" scrollamount="9"><img src="{% static 'img/fadd01.jpg' %}"></marquee>
+                <marquee behavior="scroll" direction="right" scrollamount="9"><img src="{% static 'img/pokemonsh.jpg' %}"></marquee>
+                <marquee behavior="scroll" direction="left" scrollamount="6"><img src="{% static 'img/fadd03.jpg' %}"></marquee>
+                <marquee behavior="scroll" direction="right" scrollamount="15"><img src="{% static 'img/spiderman.jpg' %}"></marquee>
+                <marquee behavior="scroll" direction="left" scrollamount="15"><img src="{% static 'img/X1.png' %}"></marquee>
             </div>
             <!-- CONTENT -->
             <div id="contentBox">
@@ -76,7 +76,7 @@
                         <input type="text" name="title" id="title" placeholder="Title of Post Here"><br>
                         <textarea name="post" id="fpost" cols="30" rows="10" placeholder="Post Message Here"></textarea><br>
                         <br><button type="submit">Post</button>
-                    </form>
+                    </form><br>
                     {% if messages %}
                         <ul>
                         {% for message in messages %}
@@ -88,21 +88,52 @@
                 {% if Posts %}
                     {% for post in Posts %}
                         <div class="post">
-                            <div class="Phead">
-                                <h2>{{ post.title }} - <span style="font-size: 15px;">{{ post.profile.name }} | {{ post.created_at }}</h2>
+                            <div class="Phead" {% if post.profile.id == User.id %}style="box-shadow: 0px 0px 10px 6px rgb(0, 255, 0);"{% endif %}>
+                                <h2>{{ post.title }} - 
+                                        {% if post.profile in Following %}
+                                            <span class="folg">{{ post.profile.name }}</span>
+                                        {% else %}
+                                            {% if post.profile.id == User.id %}
+                                            <span style="text-shadow: 0px 0px 10px rgb(0, 255, 0); font-weight: bolder;">{{ post.profile.name }}</span>
+                                            {% else %}
+                                                <span style="font-size: 15px;">{{ post.profile.name }}</span>
+                                            {% endif %}
+                                        {% endif %}
+                                    | <span style="font-size: 15px;">{{ post.created_at }}</span>
+                                </h2>
                             </div>
                             <div class="Ptails">
                                 <p>{{ post.post }}</p>
                             </div>
-                            <div class="likes">
-                                <p>LIKES: {{ post.liked.all.count }}</p>
+                            <div style="display: flex; justify-content: space-between;">
+                                {% if post.profile.id != User.id %}
+                                    <form action="/xplanet/viewpost/{{ post.id }}" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="edit">View Post</button>
+                                    </form>
+                                {% endif %}
+                                {% if post.liked.all.count == 0 %}
+                                <div class="dis">
+                                    <p>LIKES: {{ post.liked.all.count }}</p>
+                                </div>
+                                {% else %}
+                                <div class="likes">
+                                    <p>LIKES: {{ post.liked.all.count }}</p>
+                                </div>
+                                {% endif %}
                             </div>
                             {% if post.profile.id == User.id %}
+                            <div style="display: flex; justify-content: space-between;">
+                                <form action="/xplanet/viewpost/{{ post.id }}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="edit">Edit Post</button>
+                                </form>
                                 <form action="/xplanet/delete" method="POST">
                                     {% csrf_token %}
                                     <input type="hidden" name="delkey" value="{{ post.id }}">
                                     <button type="submit" class="delete">Delete Post</button>
                                 </form>
+                            </div>
                             {% else %}
                                 {% if User not in post.liked.all %}
                                     <form action="/xplanet/like" method="POST">

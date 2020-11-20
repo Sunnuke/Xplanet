@@ -28,8 +28,20 @@
         <!-- SIDE BAR -->
         <div class="uibase">
             <div id="sideBox">
-                
-                <img src="{% static 'img/X2.png' %}">
+                <br><marquee behavior="scroll" direction="left" scrollamount="13"><img src="{% static 'img/X.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="right" scrollamount="11"><img src="{% static 'img/p.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="left" scrollamount="1"><img src="{% static 'img/l.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="right" scrollamount="7"><img src="{% static 'img/a.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="left" scrollamount="5"><img src="{% static 'img/n.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="right" scrollamount="9"><img src="{% static 'img/e.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="left" scrollamount="3"><img src="{% static 'img/t.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="right" scrollamount="13"><img src="{% static 'img/X.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="left" scrollamount="11"><img src="{% static 'img/p.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="right" scrollamount="1"><img src="{% static 'img/l.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="left" scrollamount="7"><img src="{% static 'img/a.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="right" scrollamount="5"><img src="{% static 'img/n.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="left" scrollamount="9"><img src="{% static 'img/e.png' %}"></marquee><br>
+                <br><marquee behavior="scroll" direction="right" scrollamount="3"><img src="{% static 'img/t.png' %}"></marquee><br>
             </div>
             <!-- CONTENT -->
             <div id="contentBox">
@@ -41,10 +53,10 @@
                                 {% for human in All %}
                                     {% if User not in human.followers.all %}
                                         {% if human.id != User.id %}
-                                            <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a> | <a href="/xplanet/follow/{{human.id}}">Follow</a></li><br>
+                                            <li><a class="nofol" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a> | <a href="/xplanet/follow/{{human.id}}">Follow</a></li><br>
                                         {% endif %}
                                     {% else %}
-                                        <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a> | <a href="/xplanet/unfollow/{{human.id}}">Un-Follow</a></li><br>
+                                        <li><a class="fol" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a> | <a href="/xplanet/unfollow/{{human.id}}">Un-Follow</a></li><br>
                                     {% endif %}
                                 {% endfor %}
                             {% else %}
@@ -59,7 +71,7 @@
                         <ul>
                             {% if Following %}
                                 {% for human in Following %}
-                                    <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li>
+                                    <li><a class="folg" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li><br>
                                 {% endfor %}
                             {% else %}
                                 <li>No humans here!</li>
@@ -73,7 +85,7 @@
                         <ul>
                             {% if Followers %}
                                 {% for human in Followers %}
-                                    <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li>
+                                    <li><a class="fol" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li><br>
                                 {% endfor %}
                             {% else %}
                                 <li>No humans here!</li>
