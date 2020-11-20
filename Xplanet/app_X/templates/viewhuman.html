@@ -14,8 +14,9 @@
             <img src="{% static 'img/out6.png' %}" alt="Xplanet Icon">
             <nav>
                 <ul>
+                    <li><a href="#" style="color: rgb(0, 255, 85);">Viewing A User</a></li>
                     <li><a href="/xplanet" class="li">Home</a></li>
-                    <li><a href="#" style="color: cyan;">Dashboard</a></li>
+                    <li><a href="/xplanet/dashboard" class="li">Dashboard</a></li>
                     <li><a href="/xplanet/humans" class="li">Humans</a></li>
                     <li><a href="/xplanet/forum" class="li">Forums</a></li>
                     <li><a href="/xplanet/news" class="li">News</a></li>
@@ -34,7 +35,11 @@
                         <ul>
                             {% if Following %}
                                 {% for human in Following %}
-                                    <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li>
+                                    {% if User.id == human.id %}
+                                        <li style="color: cyan;">{{ human.name }}</li><br>
+                                    {% else %}
+                                        <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li><br>
+                                    {% endif %}
                                 {% endfor %}
                             {% else %}
                                 <li>No humans here!</li>
@@ -48,7 +53,11 @@
                         <ul>
                             {% if Followers %}
                                 {% for human in Followers %}
-                                    <li><a href="">{{ human.name }}</a></li>
+                                    {% if User.id != human.id %}
+                                        <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li><br>
+                                    {% else %}
+                                        <li style="text-shadow: 0px 0px 10px rgb(0, 255, 0)">{{ human.name }} - You</li><br>
+                                    {% endif %}
                                 {% endfor %}
                             {% else %}
                                 <li>No humans here!</li>
@@ -62,25 +71,25 @@
             <div id="contentBox">
                 <div class="userfo">
                     <h1 style="margin-bottom: 20px;">Profile</h1>
-                    <h3 style="margin-bottom: 30px;">User Name: {{ User.name }}</h3>
+                    <h3 style="margin-bottom: 30px;">User Name: {{ Them.name }}</h3>
                     <h3>Bio:</h3>
                     <div class="bio">
-                    <p>{{ User.bio }}</p>
+                    <p>{{ Them.bio }}</p>
                     </div>
                     <div class="quicklinks">
                         <ul>
                             <li>Dash links:</li>
-                            <li><a href="#upost">Your Posts</a></li>
-                            <li><a href="#liked">Posts You Liked</a></li>
-                            <li><a href="#comments">Comments You Made</a></li>
+                            <li><a href="#upost">Their Posts</a></li>
+                            <li><a href="#liked">Posts They Liked</a></li>
+                            <li><a href="#comments">Comments They Made</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="uposts">
                     <section id="post">
-                        <h1>Your Posts:</h1>
+                        <h1>Their Posts:</h1>
                         {% if Posts %}
-                            {% for post in User.posts.all %}
+                            {% for post in Them.posts.all %}
                             <div class="Phead">
                                 <h2>{{ post.title }} - <span style="font-size: 15px;">{{ post.profile.name }} | {{ post.created_at }}</span></h2>
                             </div>
@@ -105,9 +114,9 @@
                             {% endif %}
                     </section>
                     <section id="liked">
-                        <h1>Posts You Liked:</h1>
-                        {% if User_liked %}
-                            {% for like in User_liked.all %}
+                        <h1>Posts They Liked:</h1>
+                        {% if Them_liked %}
+                            {% for like in Them_liked.all %}
                             <div class="Phead">
                                 <h2>{{ like.title }} <span>{{ like.profile.name }}</span></h2>
                             </div>
@@ -132,9 +141,9 @@
                             {% endif %}
                     </section>
                     <section id="comments">
-                        <h1>Comments You Made:</h1>
-                        {% if User_comments %}
-                            {% for comment in User_comments.all %}
+                        <h1>Comments They Made:</h1>
+                        {% if Them_comments %}
+                            {% for comment in Them_comments.all %}
                             <div class="Phead">
                                 <h2>Post Name:{{ comment.post.title }} -<span style="font-size: 15px;">Owner:{{ comment.post.profile.name }}</span></h2>
                             </div>

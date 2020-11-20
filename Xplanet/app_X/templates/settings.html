@@ -34,7 +34,7 @@
                         <ul>
                             {% if Following %}
                                 {% for human in Following %}
-                                    <li><a href="">{{ human.name }}</a></li>
+                                    <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li>
                                 {% endfor %}
                             {% else %}
                                 <li>No humans here!</li>
@@ -48,7 +48,7 @@
                         <ul>
                             {% if Followers %}
                                 {% for human in Followers %}
-                                    <li><a href="">{{ human.name }}</a></li>
+                                    <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li>
                                 {% endfor %}
                             {% else %}
                                 <li>No humans here!</li>
@@ -63,6 +63,13 @@
                 <div class="userfo">
                     <div class="Phead">
                         <h1 style="margin-bottom: 20px;">Profile</h1>
+                        {% if messages %}
+                            <ul>
+                                {% for message in messages %}
+                                    <li style="color: red; background-color: rgb(172, 172, 172); margin-left: 30px;">{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                     </div>
                     <form action="/xplanet/update" method="POST">
                         {% csrf_token %}

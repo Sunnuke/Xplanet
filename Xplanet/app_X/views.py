@@ -127,16 +127,20 @@ def settings(request):
     return render(request, 'settings.html', context)
 
 def update(request):
-    errors = Profile.objects.valid_pro(request.POST)
-    if len(errors) > 0:
-        for key, val in errors.items():
-            messages.error(request, val)
-        return redirect('/success')
+    profile = Profile.objects.get(id=request.session['user'])
+    if not profile.name == request.POST['name'] or profile.bio == request.POST['bio']:
+        errors = Profile.objects.valid_pro(request.POST)
+        if len(errors) > 0:
+            for key, val in errors.items():
+                messages.error(request, val)
+        return redirect('/xplanet/settings')
     else:
-        profile = Profile.objects.get(id=request.session['user'])
-        profile.name=request.POST['name']
-        profile.bio=request.POST['bio']
-        profile.save()
+        if 1 == 1:
+            profile.name=request.POST['name']
+            profile.save()
+        if 2 == 2:
+            profile.bio=request.POST['bio']
+            profile.save()
     return redirect('/xplanet/settings')
 
 # Humans Page
@@ -165,6 +169,20 @@ def unfollow(request, num):
     you.followers.remove(me)
     me.following.remove(you)
     return redirect('/xplanet/humans')
+
+# View Human
+def viewhuman(request, name):
+    context = {
+        'User': Profile.objects.get(id=request.session['user']),
+        'Them': Profile.objects.get(name=name),
+        'Them_liked': Profile.objects.get(name=name).posts_liked.all().order_by("-id"),
+        'Them_comments': Profile.objects.get(name=name).profile_comments.all().order_by("-id"),
+        'Posts': Profile.objects.get(name=name).posts.all().order_by("-id"),
+        'Following': Profile.objects.get(name=name).following.all(),
+        'Followers': Profile.objects.get(name=name).followers.all(),
+        'status': request.session['word']
+    }
+    return render(request, 'viewhuman.html', context)
 
 # News Feed Page_____________
 def news(request):

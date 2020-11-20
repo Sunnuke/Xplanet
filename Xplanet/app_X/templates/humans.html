@@ -41,10 +41,10 @@
                                 {% for human in All %}
                                     {% if User not in human.followers.all %}
                                         {% if human.id != User.id %}
-                                            <li>{{ human.name }} <a href="/xplanet/follow/{{human.id}}">Follow</a></li><br>
+                                            <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a> | <a href="/xplanet/follow/{{human.id}}">Follow</a></li><br>
                                         {% endif %}
                                     {% else %}
-                                        <li>{{ human.name }} <a href="/xplanet/unfollow/{{human.id}}">Un-Follow</a></li><br>
+                                        <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a> | <a href="/xplanet/unfollow/{{human.id}}">Un-Follow</a></li><br>
                                     {% endif %}
                                 {% endfor %}
                             {% else %}
@@ -59,7 +59,7 @@
                         <ul>
                             {% if Following %}
                                 {% for human in Following %}
-                                    <li><a href="">{{ human.name }}</a></li>
+                                    <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li>
                                 {% endfor %}
                             {% else %}
                                 <li>No humans here!</li>
@@ -73,7 +73,7 @@
                         <ul>
                             {% if Followers %}
                                 {% for human in Followers %}
-                                    <li><a href="">{{ human.name }}</a></li>
+                                    <li><a href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li>
                                 {% endfor %}
                             {% else %}
                                 <li>No humans here!</li>
