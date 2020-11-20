@@ -165,3 +165,16 @@ def unfollow(request, num):
     you.followers.remove(me)
     me.following.remove(you)
     return redirect('/xplanet/humans')
+
+# News Feed Page_____________
+def news(request):
+    if 'user' not in request.session:
+        return redirect('/xplanet/no_user')
+    context = {
+        'User': Profile.objects.get(id=request.session['user']),
+        'status': request.session['word'],
+        'Posts': Post.objects.all().order_by('-id'),
+        'Following': Profile.objects.get(id=request.session['user']).following.all(),
+        'Followers': Profile.objects.get(id=request.session['user']).followers.all(),
+    }
+    return render(request, 'newsfeed.html', context)

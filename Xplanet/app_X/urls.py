@@ -30,4 +30,7 @@ urlpatterns = [
     path('humans', views.humans),
     path('follow/<int:num>', views.follow),
     path('unfollow/<int:num>', views.unfollow),
+
+    # News Feed
+    path('news', views.news),
 ]

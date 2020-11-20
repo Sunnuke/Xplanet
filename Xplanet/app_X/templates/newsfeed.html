@@ -14,17 +14,17 @@
             <img src="{% static 'img/out6.png' %}" alt="Xplanet Icon">
             <nav>
                 <ul>
-                    <li><a href="#" style="color: cyan;">Home</a></li>
+                    <li><a href=""/xplanet" class="li">Home</a></li>
                     <li><a href="/xplanet/dashboard" class="li">Dashboard</a></li>
                     <li><a href="/xplanet/humans" class="li">Humans</a></li>
                     <li><a href="/xplanet/forum" class="li">Forums</a></li>
-                    <li><a href="/xplanet/" class="li">News</a></li>
+                    <li><a href="#" style="color: cyan;">News</a></li>
                     <li><a href="/xplanet/settings" class="li">Settings</a></li>
                     <li>|</li>
                     {% if User %}
                         <li><a href="/Logout" class="li">Log Out</a></li>
                     {% else %}
-                        <li><a href="/" class="li">Log In</a></li>
+                        <li><a href="/log" class="li">Log In</a></li>
                     {% endif %}
                 </ul>
             </nav>
@@ -33,14 +33,36 @@
         <div class="uibase">
             <div id="sideBox">
                 <div class="following">
-                    <h2>Sign Up and you can Follow other Humans!</h2>
+                    <h2 style="margin-bottom: 20px;">Humans You Follow:</h2>
+                    <div class="followList">
+                        <ul>
+                            {% if Following %}
+                                {% for human in Following %}
+                                    <li><a href="">{{ human.name }}</a></li>
+                                {% endfor %}
+                            {% else %}
+                                <li>No humans here!</li>
+                            {% endif %}
+                        </ul>
+                    </div>
                 </div>
                 <div class="followers">
-                    <h2>Also Sign In so other Humans can Follow You!</h2>
+                    <h2 style="margin-bottom: 20px;">Following Humans:</h2>
+                    <div class="followList">
+                        <ul>
+                            {% if Followers %}
+                                {% for human in Followers %}
+                                    <li><a href="">{{ human.name }}</a></li>
+                                {% endfor %}
+                            {% else %}
+                                <li>No humans here!</li>
+                            {% endif %}
+                        </ul>
+                    </div>
                 </div>
-                <marquee behavior="scroll" direction="left" scrollamount="5"><img src="{% static 'img/fadd01.jpg' %}" alt="New Among Us Map Picture"></marquee>
-                <marquee behavior="scroll" direction="right" scrollamount="5"><img src="{% static 'img/fadd02.jpg' %}" alt="New Among Us Map Picture"></marquee>
-                <marquee behavior="scroll" direction="left" scrollamount="3"><img src="{% static 'img/fadd03.jpg' %}" alt="New Among Us Map Picture"></marquee>
+                <marquee behavior="scroll" direction="left" scrollamount="5"><img src="{% static 'img/spiderman.jpg' %}" alt="New Among Us Map Picture"></marquee>
+                <marquee behavior="scroll" direction="right" scrollamount="5"><img src="{% static 'img/halo.jpeg' %}" alt="New Among Us Map Picture"></marquee>
+                <marquee behavior="scroll" direction="left" scrollamount="3"><img src="{% static 'img/Spellbreak.jpg' %}" alt="New Among Us Map Picture"></marquee>
                 <marquee behavior="scroll" direction="right" scrollamount="10"><img src="{% static 'img/X1.png' %}" alt="New Among Us Map Picture"></marquee>
                 <marquee behavior="scroll" direction="left" scrollamount="10"><img src="{% static 'img/X1.png' %}" alt="New Among Us Map Picture"></marquee>
             </div>
@@ -76,6 +98,20 @@
                         <img src="{% static 'img/PSX.jpg' %}" alt="A PlayStation and Xbox Controller">
                         <div class="Ptails">
                             <p>Customers reported having a difficult time finding the consoles in stock as websites kept crashing. To many, it felt harder this year than usual to get their hands on the latest release.</p>
+                        </div>
+                    </div>
+                    <h3>Nvidia is bringing Fortnite back to iOS with new cloud gaming web app</h3>
+                    <div class="news">
+                        <img src="{% static 'img/GeForce.jpg' %}" alt="Nvidia GeForce">
+                        <div class="Ptails">
+                            <p>Nvidia is joining its fellow cloud gaming providers in choosing to bypass Apple’s App Store and launching a mobile web app version of its GeForce Now service. Nvidia’s version is available today in beta form, meaning any of the service’s more than 5 million registered users can fire up GeForce Now in mobile Safari on an iPhone or iPad and get playing.</p>
+                        </div>
+                    </div>
+                    <h3>The new ‘Call of Duty’ demonstrates what makes video games art</h3>
+                    <div class="news">
+                        <img src="{% static 'img/codCW.jpg' %}" alt="Nvidia GeForce">
+                        <div class="Ptails">
+                            <p>I’m someone who would be classified as a casual gamer, at best, so it takes a lot to get me to carve out the time to play a video game all the way through. But when the Verge reported “Ronald Reagan sends [us] to do war crimes in the latest ‘Call of Duty,’” I knew it was time to dust off the ol’ DualShock controller and dive back in. After all, playing a video game for a column so I could write it off on my taxes is just what the Gipper would have wanted.</p>
                         </div>
                     </div>
                 </section>
