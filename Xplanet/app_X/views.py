@@ -44,7 +44,7 @@ def forum(request):
     context = {
         'User': Profile.objects.get(id=request.session['user']),
         'status': request.session['word'],
-        'Posts': Post.objects.all()
+        'Posts': Post.objects.all().order_by('-id')
     }
     return render(request, 'forum.html', context)
 

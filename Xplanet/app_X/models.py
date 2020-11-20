@@ -2,6 +2,22 @@ from django.db import models
 from app_LR.models import User
 # Create your models here.
 
+# Forum Validater
+class ForumManager(models.Manager):
+    def valid_post(self, postData):
+        errors = {}
+        if len(postData['post']) < 10:
+            errors['post'] = "The Post Must Be at Least 10 characters Long!"
+        if len(postData['title']) < 3:
+            errors['title'] = "The Title Must Be at Least 3 characters Long!"
+        return errors
+
+    def valid_comment(self, postData):
+        errors = {}
+        if len(postData['comment']) < 3:
+            errors['comment'] = "The Comment Must Be at Least 3 characters Long!"
+        return errors
+
 
 # Profile
 class Profile(models.Model):
