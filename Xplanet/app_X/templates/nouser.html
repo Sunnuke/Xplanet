@@ -14,18 +14,14 @@
             <img src="{% static 'img/out6.png' %}" alt="Xplanet Icon">
             <nav>
                 <ul>
-                    <li><a href="/xplanet" style="color: green;">Home</a></li>
-                    <li><a href="/xplanet/dashboard" style="color: red;">Dashboard</a></li>
+                    <li><a href="/xplanet" style="color: rgb(0, 255, 0);">Home</a></li>
+                    <li><a href="" style="color: red;">Dashboard</a></li>
                     <li><a href="" style="color: red;">Humans</a></li>
                     <li><a href="" style="color: red;">Forums</a></li>
                     <li><a href="" style="color: red;">News</a></li>
                     <li><a href="" style="color: red;">Settings</a></li>
                     <li>|</li>
-                    {% if User %}
-                        <li><a href="/Logout" class="li">Log Out</a></li>
-                    {% else %}
-                        <li><a href="/" class="li">Log In</a></li>
-                    {% endif %}
+                    <li><a href="/" class="li">Log In</a></li>
                 </ul>
             </nav>
         </div>
@@ -41,77 +37,16 @@
             </div>
             <!-- CONTENT -->
             <div id="contentBox">
-                <div class="userfo">
-                    <h1 style="margin-bottom: 20px;">Profile</h1>
-                    <h3 style="margin-bottom: 30px;">User Name: {{ User.name }}</h3>
-                    <h3>Bio:</h3>
-                    <p style="margin-bottom: 20px; min-height: 100px; border: 2px solid rgb(68, 68, 68); padding: 5px;">{{ User.bio }}</p>
-                    <div class="quicklinks">
-                        <ul>
-                            <li>Dash links:</li>
-                            <li><a href="#upost">Your Posts</a></li>
-                            <li><a href="#liked">Posts You Liked</a></li>
-                            <li><a href="#comments">Comments You Made</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="uposts">
-                    <section id="post">
-                        <h1>Your Posts:</h1>
-                        {% if Posts %}
-                            {% for post in User.posts.all %}
-                                <h2>{{ post.title }} <span>{{ post.profile.name }}</span></h2>
-                                <p>{{ post.post }}</p>
-                                <ul>
-                                    {% for comment in post.comments.all %}
-                                        <h3>{{ comment.profile.name }}</h3>
-                                        <p style="margin-bottom: 20px; min-height: 100px; border: 2px solid rgb(68, 68, 68); padding: 5px;">{{ comment.comment }}</p>
-                                    {% endfor %}
-                                </ul>
-                            {% endfor %}
-                        {% else %}
-                            <h2>You Have No Posts!</h2>
-                        {% endif %}
-                    </section>
-                    <section id="liked">
-                        <h1>Posts You Liked:</h1>
-                        {% if User_liked %}
-                            {% for like in User_liked.all %}
-                            <h2>{{ like.title }} <span>{{ like.profile.name }}</span></h2>
-                            <p>{{ like.post }}</p>
-                            <ul>
-                                {% for comment in like.comments.all %}
-                                    <h3>{{ comment.profile.name }}</h3>
-                                    <p style="margin-bottom: 20px; min-height: 100px; border: 2px solid rgb(68, 68, 68); padding: 5px;">{{ comment.comment }}</p>
-                                {% endfor %}
-                            </ul>
-                            {% endfor %}
-                        {% else %}
-                            <h2>You Have Not Liked a Post!</h2>
-                        {% endif %}
-                    </section>
-                    <section id="comments">
-                        <h1>Comments You Made:</h1>
-                        {% if User_comments %}
-                            {% for comment in User_comments.all %}
-                                <h2>Post Name:{{ comment.post.title }}</h2>
-                                <h3>Owner:{{ comment.post.profile.name }}</h3>
-                                <p style="margin-bottom: 20px; min-height: 100px; border: 2px solid rgb(68, 68, 68); padding: 5px;">Your Comment: {{ comment.comment }}</p>
-                            {% endfor %}
-                        {% else %}
-                            <h2>You Made No Comments!</h2>
-                        {% endif %}
-                    </section>
+                <div class="Phead">
+                    <h1>Hello Human!</h1><br>
+                    <h2>Sorry! You have to Register or Login to get access to the rest of the site!</h2><br>
+                    <h3>Non-Registered Humans can only access the "Home!"</h3>
                 </div>
             </div>
         </div>
     </div>
     <div id="footBox">
-        {% if User %}
-            <footer><marquee behavior="scroll" direction="left">(O <_ O) {{ User.name }} is Currently Logged In to XPLANET Welcome Human! (O _> O)</marquee></footer>
-        {% else %}
-            <footer><marquee behavior="scroll" direction="left">(O <_ O) ({{ No_user }}) Welcome to XPLANET Human!(O _> O)</marquee></footer>
-        {% endif %}
+        <footer><marquee behavior="scroll" direction="left">(O <_ O) Welcome to XPLANET Human! Please Register or login To get access to the rest of the site! (O _> O)</marquee></footer>
     </div>
 </body>
 </html>

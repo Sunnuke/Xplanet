@@ -58,7 +58,7 @@ nav ul li a{
 }
 .following{
     min-height: 200px;
-    padding: 5px;
+    padding: 15px;
     box-shadow: 0px 0px 10px 4px black;
     background-color: rgb(172, 172, 172);
     margin-bottom: 50px;
@@ -67,9 +67,15 @@ nav ul li a{
 .following ul{
     list-style-type: none;
 }
+.followList{
+    padding: 10px;
+    background-color: rgb(212, 212, 212);
+    box-shadow: 0px 0px 5px 1px black;
+    margin-bottom: 15px;
+}
 .followers{
     min-height: 200px;
-    padding: 5px;
+    padding: 15px;
     box-shadow: 0px 0px 10px 4px black;
     background-color: rgb(172, 172, 172);
     margin-bottom: 50px;
@@ -92,11 +98,18 @@ nav ul li a{
 
 .userfo{
     min-height: 300px;
-    padding: 5px;
+    padding: 20px;
     box-shadow: 0px 0px 10px 4px black;
     background-color: rgb(172, 172, 172);
     margin-bottom: 50px;
     border-radius: 5px;
+}
+.bio{
+    padding: 10px;
+    background-color: rgb(212, 212, 212);
+    box-shadow: 0px 0px 5px 1px black;
+    margin-bottom: 15px;
+    height: 200px;
 }
 
 
@@ -117,7 +130,7 @@ nav ul li a{
 }
 #post{
     min-height: 200px;
-    padding: 5px;
+    padding: 20px;
     box-shadow: 0px 0px 10px 4px black;
     background-color: rgb(172, 172, 172);
     margin-bottom: 50px;
@@ -129,7 +142,7 @@ nav ul li a{
 
 #liked{
     min-height: 200px;
-    padding: 5px;
+    padding: 20px;
     box-shadow: 0px 0px 10px 4px black;
     background-color: rgb(172, 172, 172);
     margin-bottom: 50px;
@@ -141,7 +154,7 @@ nav ul li a{
 
 #comments{
     min-height: 200px;
-    padding: 5px;
+    padding: 20px;
     box-shadow: 0px 0px 10px 4px black;
     background-color: rgb(172, 172, 172);
     margin-bottom: 50px;
@@ -150,6 +163,18 @@ nav ul li a{
 #comments h1{
     margin-bottom: 20px;
 }
+.Ptails{
+    padding: 10px;
+    background-color: rgb(212, 212, 212);
+    box-shadow: 0px 0px 5px 1px black;
+}
+.Phead{
+    padding: 10px;
+    background-color: rgb(212, 212, 212);
+    box-shadow: 0px 0px 5px 1px black;
+    margin-bottom: 15px;
+}
+
 
 #footBox{
     position: fixed;
