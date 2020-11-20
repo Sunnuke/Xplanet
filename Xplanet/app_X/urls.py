@@ -19,7 +19,8 @@ urlpatterns = [
     path('delete', views.delete),
 
     # LIKES/DISLIKES
-    path('delete', views.delete),
+    path('like', views.like),
+    path('dislike', views.dislike),
 
     # Settings
     path('settings', views.settings),

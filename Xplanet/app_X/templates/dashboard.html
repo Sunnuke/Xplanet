@@ -116,10 +116,10 @@
                             </div>
                             <ul>
                                 {% for comment in like.comments.all %}
-                                <div class="Phead">
+                                <div class="Chead">
                                     <h3>{{ comment.profile.name }}</h3>
                                 </div>
-                                <div class="Ptails">
+                                <div class="Ctails">
                                     <p style="margin-bottom: 20px; min-height: 100px; border: 2px solid rgb(68, 68, 68); padding: 5px;">{{ comment.comment }}</p>
                                 </div>
                                     {% endfor %}
@@ -138,7 +138,7 @@
                             <div class="Phead">
                                 <h2>Post Name:{{ comment.post.title }} -<span style="font-size: 15px;">Owner:{{ comment.post.profile.name }}</span></h2>
                             </div>
-                            <div class="Ptails">
+                            <div class="Ctails">
                                 <p style="margin-bottom: 20px; min-height: 100px; border: 2px solid rgb(68, 68, 68); padding: 5px;">Your Comment: {{ comment.comment }}</p>
                             </div>
                                 {% endfor %}

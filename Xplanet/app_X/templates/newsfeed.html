@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xplanet</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/wisewelcome.css' %}">
+</head>
+    <body style="background-color: rgb(18, 18, 94);">
+    <div id="bodyBox">
+        <!-- NAV BAR -->
+        <div id="navBox">
+            <img src="{% static 'img/out6.png' %}" alt="Xplanet Icon">
+            <nav>
+                <ul>
+                    <li><a href="#" style="color: cyan;">Home</a></li>
+                    <li><a href="/xplanet/dashboard" class="li">Dashboard</a></li>
+                    <li><a href="/xplanet/humans" class="li">Humans</a></li>
+                    <li><a href="/xplanet/forum" class="li">Forums</a></li>
+                    <li><a href="/xplanet/" class="li">News</a></li>
+                    <li><a href="/xplanet/settings" class="li">Settings</a></li>
+                    <li>|</li>
+                    {% if User %}
+                        <li><a href="/Logout" class="li">Log Out</a></li>
+                    {% else %}
+                        <li><a href="/" class="li">Log In</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        <!-- SIDE BAR -->
+        <div class="uibase">
+            <div id="sideBox">
+                <div class="following">
+                    <h2>Sign Up and you can Follow other Humans!</h2>
+                </div>
+                <div class="followers">
+                    <h2>Also Sign In so other Humans can Follow You!</h2>
+                </div>
+                <marquee behavior="scroll" direction="left" scrollamount="5"><img src="{% static 'img/fadd01.jpg' %}" alt="New Among Us Map Picture"></marquee>
+                <marquee behavior="scroll" direction="right" scrollamount="5"><img src="{% static 'img/fadd02.jpg' %}" alt="New Among Us Map Picture"></marquee>
+                <marquee behavior="scroll" direction="left" scrollamount="3"><img src="{% static 'img/fadd03.jpg' %}" alt="New Among Us Map Picture"></marquee>
+                <marquee behavior="scroll" direction="right" scrollamount="10"><img src="{% static 'img/X1.png' %}" alt="New Among Us Map Picture"></marquee>
+                <marquee behavior="scroll" direction="left" scrollamount="10"><img src="{% static 'img/X1.png' %}" alt="New Among Us Map Picture"></marquee>
+            </div>
+            <!-- CONTENT -->
+            <div id="contentBox">
+                <section id="news">
+                    <h1>Recent News:</h1><br>
+                    <h3>Bungie nerfs Stasis Warlock and promises to add more guns to Destiny 2: Beyond Light</h3>
+                    <div class="news">
+                        <img src="{% static 'img/destiny-2-warlock.jpg' %}" alt="Destiny 2 Stasis Warlock">
+                        <div class="Ptails">
+                            <p>The Destiny 2: Beyond Light expansion went live earlier this week with the big addition of a new elemental power, Stasis, that enables players to slow, freeze, and shatter enemies. It very quickly became clear that it was working a little too well for the new for the new Shadebinder Warlock, though, and by "a little" I mean a lot, and by "a lot" I mean, as Bungie put it in its latest weekly update, "we mean insanely huge."</p>
+                        </div>
+                    </div>
+                    <h3>Gaming company Roblox files IPO prospectus after 91% jump in revenue</h3>
+                    <div class="news">
+                        <img src="{% static 'img/Roblox.jpg' %}" alt="Roblox CEO David Baszucki">
+                        <div class="Ptails">
+                            <p>Roblox said third-quarter revenue climbed 91% to $242.2 million</p><br>
+                            <p>The company’s net loss more than doubled to $48 million.</p><br>
+                            <p>Roblox’s prospectus hit investors’ hands two months after gaming company Unity went public. Roblox is bigger and growing faster.</p>
+                        </div>
+                    </div>
+                    <h3>Among Us developer teases new map for next month</h3>
+                    <div class="news">
+                        <img src="{% static 'img/Among_Us.jpg' %}" alt="New Among Us Map Picture">
+                        <div class="Ptails">
+                            <p>Among Us developer InnerSloth has used the first post from a newly established Twitter account for the game to tease a new map. “Here’s a special look at the new Among Us map,” the developer tweeted, before hinting that more information would be revealed during The Game Awards on December 10th. Among Us is nominated for two awards at this year’s show, “Best Multiplayer,” and “Best Mobile Game.”</p>
+                        </div>
+                    </div>
+                    <h3>The PlayStation 5 and Xbox Series X have been super hard to find. That may be on purpose</h3>
+                    <div class="news">
+                        <img src="{% static 'img/PSX.jpg' %}" alt="A PlayStation and Xbox Controller">
+                        <div class="Ptails">
+                            <p>Customers reported having a difficult time finding the consoles in stock as websites kept crashing. To many, it felt harder this year than usual to get their hands on the latest release.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div id="footBox">
+        {% if User %}
+            <footer><marquee behavior="scroll" direction="left">(O <_ O) {{ User.name }} is Currently Logged In to XPLANET Welcome Human! (O _> O)</marquee></footer>
+        {% else %}
+            <footer><marquee behavior="scroll" direction="left">(O <_ O) ({{ No_user }}) Welcome to XPLANET Human! (O _> O)</marquee></footer>
+        {% endif %}
+    </div>
+</body>
+</html>

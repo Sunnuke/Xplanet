@@ -56,10 +56,20 @@
                         </ul>
                     </div>
                 </div>
+                <marquee behavior="scroll" direction="left" scrollamount="5"><img src="{% static 'img/DOOM.jpg' %}"></marquee>
+                <marquee behavior="scroll" direction="right" scrollamount="5"><img src="{% static 'img/fadd02.jpg' %}"></marquee>
+                <marquee behavior="scroll" direction="left" scrollamount="3"><img src="{% static 'img/fortnite.jpg' %}"></marquee>
+                <marquee behavior="scroll" direction="right" scrollamount="10"><img src="{% static 'img/X1.png' %}"></marquee>
+                <marquee behavior="scroll" direction="left" scrollamount="10"><img src="{% static 'img/halo.jpeg' %}"></marquee>
+                <marquee behavior="scroll" direction="left" scrollamount="5"><img src="{% static 'img/fadd01.jpg' %}"></marquee>
+                <marquee behavior="scroll" direction="right" scrollamount="5"><img src="{% static 'img/pokemonsh.jpg' %}"></marquee>
+                <marquee behavior="scroll" direction="left" scrollamount="3"><img src="{% static 'img/fadd03.jpg' %}"></marquee>
+                <marquee behavior="scroll" direction="right" scrollamount="10"><img src="{% static 'img/spiderman.jpg' %}"></marquee>
+                <marquee behavior="scroll" direction="left" scrollamount="10"><img src="{% static 'img/X1.png' %}"></marquee>
             </div>
             <!-- CONTENT -->
             <div id="contentBox">
-                <h1 style="margin-bottom: 20px;">Xplanet's Forum</h1>
+                <h1 style="margin-bottom: 20px; color: rgb(0, 0, 160);">Xplanet's Forum</h1>
                 <div id="post">
                     <form action="/xplanet/post" method="POST">
                         {% csrf_token %}
@@ -84,6 +94,9 @@
                             <div class="Ptails">
                                 <p>{{ post.post }}</p>
                             </div>
+                            <div class="likes">
+                                <p>LIKES: {{ post.liked.all.count }}</p>
+                            </div>
                             {% if post.profile.id == User.id %}
                                 <form action="/xplanet/delete" method="POST">
                                     {% csrf_token %}
@@ -92,16 +105,16 @@
                                 </form>
                             {% else %}
                                 {% if User not in post.liked.all %}
-                                    <form action="/xplanet/delete" method="POST">
+                                    <form action="/xplanet/like" method="POST">
                                         {% csrf_token %}
                                         <input type="hidden" name="jugkey" value="{{ post.id }}">
                                         <button type="submit" class="like">Like Post</button>
                                     </form>
                                 {% else %}
-                                    <form action="/xplanet/delete" method="POST">
+                                    <form action="/xplanet/dislike" method="POST">
                                         {% csrf_token %}
                                         <input type="hidden" name="jugkey" value="{{ post.id }}">
-                                        <button type="submit" class="like">Like Post</button>
+                                        <button type="submit" class="dislike">Dislike Post</button>
                                     </form>
                                 {% endif %}
                             {% endif %}

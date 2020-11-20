@@ -101,6 +101,19 @@ def delete(request):
     c.delete()
     return redirect('/xplanet/forum')
 
+    # LIKES/DISLIKES_____________________
+def like(request):
+    user = Profile.objects.get(id=request.session['user'])
+    post = Post.objects.get(id=request.POST['jugkey'])
+    post.liked.add(user)
+    return redirect('/xplanet/forum')
+
+def dislike(request):
+    user = Profile.objects.get(id=request.session['user'])
+    post = Post.objects.get(id=request.POST['jugkey'])
+    post.liked.remove(user)
+    return redirect('/xplanet/forum')
+
 # Settings Page________________
 def settings(request):
     if 'user' not in request.session:
