@@ -6,15 +6,25 @@ from .models import *
 
 # WISE WELCOME_________
 def xplanet(request):
-    context = {
-        'User': Profile.objects.get(id=request.session['user']),
-        'status': request.session['word'],
-    }
+    if 'user' in request.session:
+        context = {
+            'User': Profile.objects.get(id=request.session['user']),
+            'status': request.session['word'],
+        }
+    else:
+        context = {
+            'No_user': "Not Signed In!"
+        }
     return render(request, 'wisewelcome.html', context)
+
+def no_user(request):
+    return render(request, 'nouser.html')
 
 
 # DASHBOARD PAGE FUNCTIONS________
 def dashboard(request):
+    if 'user' not in request.session:
+        return redirect('/xplanet/no_user')
     context = {
         'User': Profile.objects.get(id=request.session['user']),
         'User_liked': Profile.objects.get(id=request.session['user']).posts_liked.all().order_by("-id"),
@@ -29,6 +39,8 @@ def dashboard(request):
 
 # FORUM PAGE FUNCTIONS _________
 def forum(request):
+    if 'user' not in request.session:
+        return redirect('/xplanet/no_user')
     context = {
         'User': Profile.objects.get(id=request.session['user']),
         'status': request.session['word'],

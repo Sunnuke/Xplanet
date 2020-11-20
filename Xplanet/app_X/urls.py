@@ -4,6 +4,9 @@ from . import views
 urlpatterns = [
     # Wise Welcome
     path('', views.xplanet),
+    
+    # Redirect for Non-Users
+    path('no_user', views.no_user),
 
     # User Dashboard
     path('dashboard', views.dashboard),

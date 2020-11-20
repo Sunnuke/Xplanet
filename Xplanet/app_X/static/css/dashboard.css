@@ -13,14 +13,14 @@
 
 /* Nav Box */
 #navBox{
-    background-image: linear-gradient(0deg,rgb(28, 167, 40), rgb(57, 255, 57), rgb(28, 167, 40));
+    background-image: linear-gradient(0deg, rgb(80, 80, 80), rgb(56, 56, 56), rgb(80, 80, 80));
     /* background-color: rgb(28, 167, 40); */
     height: 70px;
     display: flex;
     justify-content: space-between;
     padding: 10px;
     margin-bottom: 30px;
-
+    border: 2px solid gray;
 }
 nav{
     width: 50%;
@@ -49,28 +49,54 @@ nav ul li a{
 
 /* Side Box */
 #sideBox{
-    background-image: linear-gradient(40deg,rgb(28, 167, 40) 30%, rgb(57, 255, 57), rgb(28, 167, 40));
+    background-image: linear-gradient(90deg, rgb(58, 58, 58), gray, rgb(58, 58, 58));
     background-color: rgb(28, 167, 40);
     width: 20%;
     padding: 20px;
+    border-radius: 5px;
+    border: 2px solid gray;
 }
-
+.following{
+    min-height: 200px;
+    padding: 5px;
+    box-shadow: 0px 0px 10px 4px black;
+    background-color: rgb(172, 172, 172);
+    margin-bottom: 50px;
+    border-radius: 5px;
+}
+.following ul{
+    list-style-type: none;
+}
+.followers{
+    min-height: 200px;
+    padding: 5px;
+    box-shadow: 0px 0px 10px 4px black;
+    background-color: rgb(172, 172, 172);
+    margin-bottom: 50px;
+    border-radius: 5px;
+}
+.followers ul{
+    list-style-type: none;
+}
 
 /* Content Box */
 #contentBox{
-    background-image: linear-gradient(40deg,rgb(28, 167, 40) 30%, rgb(57, 255, 57), rgb(28, 167, 40));
+    background-image: linear-gradient(40deg, rgb(58, 58, 58), gray, rgb(58, 58, 58));
     background-color: rgb(28, 167, 40);
     width: 70%;
     margin-right: 1%;
     padding: 20px;
+    border-radius: 5px;
+    border: 2px solid gray;
 }
 
 .userfo{
     min-height: 300px;
     padding: 5px;
-    box-shadow: 0px 0px 4px 10px rgb(47, 224, 62);
-    background-color: rgb(57, 255, 73);
-    margin-bottom: 40px;
+    box-shadow: 0px 0px 10px 4px black;
+    background-color: rgb(172, 172, 172);
+    margin-bottom: 50px;
+    border-radius: 5px;
 }
 
 
@@ -82,33 +108,54 @@ nav ul li a{
     justify-content: space-between;
     list-style-type: none;
 }
+.quicklinks ul li a{
+    /* text-decoration: none; */
+    color: rgb(0, 0, 134);
+}
 .uposts{
     
 }
 #post{
     min-height: 200px;
     padding: 5px;
-    box-shadow: 0px 0px 4px 10px rgb(47, 224, 62);
-    background-color: rgb(57, 255, 73);
-    margin-bottom: 40px;
+    box-shadow: 0px 0px 10px 4px black;
+    background-color: rgb(172, 172, 172);
+    margin-bottom: 50px;
+    border-radius: 5px;
 }
+#post h1{
+    margin-bottom: 20px;
+}
+
 #liked{
     min-height: 200px;
     padding: 5px;
-    box-shadow: 0px 0px 4px 10px rgb(47, 224, 62);
-    background-color: rgb(57, 255, 73);
-    margin-bottom: 40px;
+    box-shadow: 0px 0px 10px 4px black;
+    background-color: rgb(172, 172, 172);
+    margin-bottom: 50px;
+    border-radius: 5px;
 }
+#liked h1{
+    margin-bottom: 20px;
+}
+
 #comments{
     min-height: 200px;
     padding: 5px;
-    box-shadow: 0px 0px 4px 10px rgb(47, 224, 62);
-    background-color: rgb(57, 255, 73);
-    margin-bottom: 40px;
+    box-shadow: 0px 0px 10px 4px black;
+    background-color: rgb(172, 172, 172);
+    margin-bottom: 50px;
+    border-radius: 5px;
+}
+#comments h1{
+    margin-bottom: 20px;
 }
 
-.footBox{
+#footBox{
     position: fixed;
-    z-index: 2;
     bottom: 0px;
+    height: 20px;
+    background-color: rgb(66, 66, 66);
+    color: cyan;
+    width: 100%;
 }
