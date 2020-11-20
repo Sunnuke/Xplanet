@@ -3,6 +3,9 @@
     padding: 0px;
     font-family: Arial, Helvetica, sans-serif;
 }
+textarea {
+    resize: none;
+  }
 
 /* Body Box */
 #bodyBox{
@@ -50,7 +53,6 @@ nav ul li a{
 /* Side Box */
 #sideBox{
     background-image: linear-gradient(90deg, rgb(58, 58, 58), gray, rgb(58, 58, 58));
-    background-color: rgb(28, 167, 40);
     width: 20%;
     padding: 20px;
     border-radius: 5px;
@@ -88,7 +90,6 @@ nav ul li a{
 /* Content Box */
 #contentBox{
     background-image: linear-gradient(40deg, rgb(58, 58, 58), gray, rgb(58, 58, 58));
-    background-color: rgb(28, 167, 40);
     width: 70%;
     margin-right: 1%;
     padding: 20px;
@@ -96,38 +97,7 @@ nav ul li a{
     border: 2px solid gray;
 }
 
-.userfo{
-    min-height: 300px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px 4px black;
-    background-color: rgb(172, 172, 172);
-    margin-bottom: 50px;
-    border-radius: 5px;
-}
-.bio{
-    padding: 10px;
-    background-color: rgb(212, 212, 212);
-    box-shadow: 0px 0px 5px 1px black;
-    margin-bottom: 15px;
-    height: 200px;
-}
 
-
-.quicklinks{
-    width: 50%;
-}
-.quicklinks ul{
-    display: flex;
-    justify-content: space-between;
-    list-style-type: none;
-}
-.quicklinks ul li a{
-    /* text-decoration: none; */
-    color: rgb(0, 0, 134);
-}
-.uposts{
-    
-}
 #post{
     min-height: 200px;
     padding: 20px;
@@ -138,6 +108,92 @@ nav ul li a{
 }
 #post h1{
     margin-bottom: 20px;
+}
+
+button {
+    margin-left: 800px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: rgb(122, 122, 122);
+    background-color: rgb(212, 212, 212);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 6px 6px 1px rgb(77, 77, 77);
+}
+
+button:hover {
+    background-color: blue;
+}
+
+button:active {
+    color: darkblue;
+    background-color: cyan;
+    box-shadow: 0px 3px 3px 0px gray;
+    transform: translateY(4px);
+}
+
+#title{
+    padding: 10px;
+    width: 880px;
+    height: 25px;
+    margin-bottom: 20px;
+}
+#fpost{
+    padding: 10px;
+    width: 880px;
+}
+.post{
+    min-height: 200px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 4px black;
+    background-color: rgb(172, 172, 172);
+    margin-top: 50px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.Ptails{
+    padding: 10px;
+    background-color: rgb(212, 212, 212);
+    box-shadow: 0px 0px 5px 1px black;
+}
+.Phead{
+    padding: 10px;
+    background-color: rgb(212, 212, 212);
+    box-shadow: 0px 0px 5px 1px black;
+    margin-bottom: 15px;
+}
+.delete {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 745px;
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: rgb(122, 122, 122);
+    background-color: rgb(212, 212, 212);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 6px 6px 1px rgb(77, 77, 77);
+}
+
+.delete:hover {
+    background-color: red;
+}
+
+.delete:active {
+    color: darkred;
+    background-color: cyan;
+    box-shadow: 0px 3px 3px 0px gray;
+    transform: translateY(4px);
 }
 
 #liked{
@@ -163,19 +219,26 @@ nav ul li a{
 #comments h1{
     margin-bottom: 20px;
 }
-.Ptails{
-    padding: 10px;
-    background-color: rgb(212, 212, 212);
-    box-shadow: 0px 0px 5px 1px black;
-    margin-bottom: 30px;
-    border-left: 4px solid rgb(0, 4, 211);
+.comment{
+    padding: 20px;
+    box-shadow: 0px 0px 10px 4px black;
+    background-color: rgb(115, 120, 138);
+    margin-bottom: 50px;
+    border-radius: 5px;
 }
-.Phead{
-    padding: 10px;
-    background-color: rgb(212, 212, 212);
-    box-shadow: 0px 0px 5px 1px black;
-    margin-bottom: 15px;
-    border-left: 4px solid rgb(0, 4, 211);
+.nocomment{
+    padding: 20px;
+    box-shadow: 0px 0px 10px 4px black;
+    background-color: rgb(172, 172, 172);
+    margin: 50px 0px;
+    border-radius: 5px;
+}
+.comboard{
+    padding: 20px;
+    box-shadow: 0px 0px 10px 4px black;
+    background-color: rgb(81, 103, 180);
+    margin-bottom: 50px;
+    border-radius: 5px;
 }
 .Ctails{
     min-height: 50px;
@@ -184,7 +247,6 @@ nav ul li a{
     box-shadow: 0px 0px 5px 1px black;
     margin-bottom: 30px;
     overflow: scroll;
-    border-left: 4px solid cyan;
 }
 .Chead{
     padding: 10px;
@@ -192,6 +254,36 @@ nav ul li a{
     box-shadow: 0px 0px 5px 1px black;
     margin-bottom: 15px;
     border-left: 4px solid cyan;
+}
+#fcomment{
+    padding: 10px;
+    width: 880px;
+}
+.button {
+    margin-left: 745px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: rgb(122, 122, 122);
+    background-color: rgb(212, 212, 212);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 6px 6px 1px rgb(77, 77, 77);
+}
+
+.button:hover {
+    background-color: blue;
+}
+
+.button:active {
+    color: darkblue;
+    background-color: cyan;
+    box-shadow: 0px 3px 3px 0px gray;
+    transform: translateY(4px);
 }
 
 

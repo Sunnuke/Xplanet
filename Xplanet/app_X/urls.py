@@ -14,6 +14,7 @@ urlpatterns = [
     # Forum Routes
     path('forum', views.forum),
     path('post', views.post),
+    path('editpost', views.editpost),
     path('comment', views.comment),
     path('delete', views.delete),
 ]

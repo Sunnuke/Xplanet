@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .models import *
+from django.contrib import messages
 
 
 # Create your views here.
@@ -49,21 +50,53 @@ def forum(request):
     return render(request, 'forum.html', context)
 
 def post(request):
-    Post.objects.create(
-        message=request.POST['post'],
-        user=User.objects.get(id=request.session['user'])
-    )
+    request.session['word'] = 'post'
+    errors = Post.objects.valid_post(request.POST)
+    if len(errors) > 0:
+        for key, val in errors.items():
+            print(key)
+            messages.error(request, val)
+        return redirect('/xplanet/forum')
+    else:
+        Post.objects.create(
+            title=request.POST['title'],
+            post=request.POST['post'],
+            profile=Profile.objects.get(id=request.session['user'])
+        )
+    return redirect('/xplanet/forum')
+
+def editpost(request):
+    request.session['word'] = 'post'
+    errors = Post.objects.valid_post(request.POST)
+    if len(errors) > 0:
+        for key, val in errors.items():
+            messages.error(request, val)
+        return redirect('/xplanet/forum')
+    else:
+        post = Post.objects.get(id=request.POST['postID'])
+        post.post=request.POST['post']
+        post.title=request.POST['title']
+        post.save()
     return redirect('/xplanet/forum')
 
 def comment(request):
-    Comment.objects.create(
-        message=Post.objects.get(id=int(request.POST['comkey'])),
-        user=User.objects.get(id=request.session['user']),
-        comment=request.POST['comment']
-    )
+    request.session['word'] = 'comment'
+    errors = Comment.objects.valid_comment(request.POST)
+    if len(errors) > 0:
+        for key, val in errors.items():
+            messages.error(request, val)
+        return redirect('/xplanet/forum')
+    else:
+        Comment.objects.create(
+            post=Post.objects.get(id=request.POST['comkey']),
+            profile=Profile.objects.get(id=request.session['user']),
+            comment=request.POST['comment']
+        )
     return redirect('/xplanet/forum')
 
 def delete(request):
     c = Post.objects.get(id=request.POST['delkey'])
     c.delete()
     return redirect('/xplanet/forum')
+
+# Settings Page

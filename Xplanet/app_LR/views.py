@@ -6,7 +6,10 @@ import bcrypt
 
 # Create your views here.
 
-def index(request):
+def indexReg(request):
+    return render(request, 'index.html')
+
+def indexLog(request):
     return render(request, 'index.html')
 
 # Register Route
@@ -45,7 +48,7 @@ def login(request):
         for key, val in errors.items():
             print(key,val)
             messages.error(request, val)
-        return redirect('/')
+        return redirect('/log')
     else:
         print('No errors')
         user = User.objects.get(email=request.POST['email'])

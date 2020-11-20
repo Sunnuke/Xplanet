@@ -82,20 +82,20 @@
                         {% if Posts %}
                             {% for post in User.posts.all %}
                             <div class="Phead">
-                                <h2>{{ post.title }} <span>{{ post.profile.name }}</span></h2>
+                                <h2>{{ post.title }} - <span style="font-size: 15px;">{{ post.profile.name }} | {{ post.created_at }}</span></h2>
                             </div>
                             <div class="Ptails">
                                 <p>{{ post.post }}</p>
                             </div>
                                 <ul>
                                     {% for comment in post.comments.all %}
-                                    <div class="Phead">
-                                        <h3>{{ comment.profile.name }}</h3>
-                                    </div>
-                                    <div class="Ptails">
-                                        <p style="margin-bottom: 20px; min-height: 100px; border: 2px solid rgb(68, 68, 68); padding: 5px;">{{ comment.comment }}</p>
-                                    </div>
-                                        {% endfor %}
+                                        <div class="Chead">
+                                            <h3>{{ comment.profile.name }} | {{ comment.created_at }}</h3>
+                                        </div>
+                                        <div class="Ctails">
+                                            <p>{{ comment.comment }}</p>
+                                        </div>
+                                    {% endfor %}
                                 </ul>
                             {% endfor %}
                         {% else %}

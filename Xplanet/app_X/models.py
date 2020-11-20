@@ -6,10 +6,10 @@ from app_LR.models import User
 class ForumManager(models.Manager):
     def valid_post(self, postData):
         errors = {}
-        if len(postData['post']) < 10:
-            errors['post'] = "The Post Must Be at Least 10 characters Long!"
         if len(postData['title']) < 3:
             errors['title'] = "The Title Must Be at Least 3 characters Long!"
+        if len(postData['post']) < 10:
+            errors['post'] = "The Post Must Be at Least 10 characters Long!"
         return errors
 
     def valid_comment(self, postData):
@@ -41,6 +41,7 @@ class Post(models.Model):
     disliked = models.ManyToManyField(Profile, related_name="posts_disliked")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = ForumManager()
     # comments
 
 # COMMENT
@@ -50,4 +51,5 @@ class Comment(models.Model):
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = ForumManager()
 
