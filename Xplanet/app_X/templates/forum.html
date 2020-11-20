@@ -16,7 +16,7 @@
                 <ul>
                     <li><a href="/xplanet" class="li">Home</a></li>
                     <li><a href="/xplanet/dashboard" class="li">Dashboard</a></li>
-                    <li><a href="/xplanet/" class="li">Humans</a></li>
+                    <li><a href="/xplanet/humans" class="li">Humans</a></li>
                     <li><a href="#" style="color: cyan;">Forums</a></li>
                     <li><a href="/xplanet/" class="li">News</a></li>
                     <li><a href="/xplanet/settings" class="li">Settings</a></li>
@@ -90,6 +90,20 @@
                                     <input type="hidden" name="delkey" value="{{ post.id }}">
                                     <button type="submit" class="delete">Delete Post</button>
                                 </form>
+                            {% else %}
+                                {% if User not in post.liked.all %}
+                                    <form action="/xplanet/delete" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="jugkey" value="{{ post.id }}">
+                                        <button type="submit" class="like">Like Post</button>
+                                    </form>
+                                {% else %}
+                                    <form action="/xplanet/delete" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="jugkey" value="{{ post.id }}">
+                                        <button type="submit" class="like">Like Post</button>
+                                    </form>
+                                {% endif %}
                             {% endif %}
                             {% if post.comments.all %}
                                 <div class="comment">

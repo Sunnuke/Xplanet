@@ -45,7 +45,9 @@ def forum(request):
     context = {
         'User': Profile.objects.get(id=request.session['user']),
         'status': request.session['word'],
-        'Posts': Post.objects.all().order_by('-id')
+        'Posts': Post.objects.all().order_by('-id'),
+        'Following': Profile.objects.get(id=request.session['user']).following.all(),
+        'Followers': Profile.objects.get(id=request.session['user']).followers.all(),
     }
     return render(request, 'forum.html', context)
 
@@ -99,7 +101,7 @@ def delete(request):
     c.delete()
     return redirect('/xplanet/forum')
 
-# Settings Page
+# Settings Page________________
 def settings(request):
     if 'user' not in request.session:
         return redirect('/xplanet/no_user')
@@ -123,3 +125,30 @@ def update(request):
         profile.bio=request.POST['bio']
         profile.save()
     return redirect('/xplanet/settings')
+
+# Humans Page
+def humans(request):
+    if 'user' not in request.session:
+        return redirect('/xplanet/no_user')
+    context = {
+        'User': Profile.objects.get(id=request.session['user']),
+        'Following': Profile.objects.get(id=request.session['user']).following.all(),
+        'Followers': Profile.objects.get(id=request.session['user']).followers.all(),
+        'status': request.session['word'],
+        'All': Profile.objects.all().order_by('name')
+    }
+    return render(request, 'humans.html', context)
+
+def follow(request, num):
+    me = Profile.objects.get(id=request.session['user'])
+    you = Profile.objects.get(id=num)
+    you.followers.add(me)
+    me.following.add(you)
+    return redirect('/xplanet/humans')
+
+def unfollow(request, num):
+    me = Profile.objects.get(id=request.session['user'])
+    you = Profile.objects.get(id=num)
+    you.followers.remove(me)
+    me.following.remove(you)
+    return redirect('/xplanet/humans')

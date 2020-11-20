@@ -16,10 +16,10 @@
                 <ul>
                     <li><a href="/xplanet" class="li">Home</a></li>
                     <li><a href="/xplanet/dashboard" class="li">Dashboard</a></li>
-                    <li><a href="/xplanet/humans" class="li">Humans</a></li>
+                    <li><a href="#" style="color: cyan;">Humans</a></li>
                     <li><a href="/xplanet/forum" class="li">Forums</a></li>
                     <li><a href="/xplanet/" class="li">News</a></li>
-                    <li><a href="#" style="color: cyan;">Settings</a></li>
+                    <li><a href="/xplanet/settings" class="li">Settings</a></li>
                     <li>|</li>
                     <li><a href="/Logout" class="li">Log Out</a></li>
                 </ul>
@@ -28,6 +28,31 @@
         <!-- SIDE BAR -->
         <div class="uibase">
             <div id="sideBox">
+                
+                <img src="{% static 'img/X2.png' %}">
+            </div>
+            <!-- CONTENT -->
+            <div id="contentBox">
+                <div class="following">
+                    <h2 style="margin-bottom: 20px;">All Humans On XPLANET:</h2>
+                    <div class="humanList">
+                        <ul>
+                            {% if All %}
+                                {% for human in All %}
+                                    {% if User not in human.followers.all %}
+                                        {% if human.id != User.id %}
+                                            <li>{{ human.name }} <a href="/xplanet/follow/{{human.id}}">Follow</a></li><br>
+                                        {% endif %}
+                                    {% else %}
+                                        <li>{{ human.name }} <a href="/xplanet/unfollow/{{human.id}}">Un-Follow</a></li><br>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <li>No humans here!</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
                 <div class="following">
                     <h2 style="margin-bottom: 20px;">Humans You Follow:</h2>
                     <div class="followList">
@@ -55,27 +80,6 @@
                             {% endif %}
                         </ul>
                     </div>
-                </div>
-                <img src="{% static 'img/X2.png' %}">
-            </div>
-            <!-- CONTENT -->
-            <div id="contentBox">
-                <div class="userfo">
-                    <div class="Phead">
-                        <h1 style="margin-bottom: 20px;">Profile</h1>
-                    </div>
-                    <form action="/xplanet/update" method="POST">
-                        {% csrf_token %}
-                        <div class="Chead">
-                            <h3 style="margin-bottom: 30px;">Current User Name: {{ User.name }}</h3>
-                            <input id="sign" type="text" name="name" id="name" value="{{ User.name }}" required>
-                        </div>
-                        <div class="Chead">
-                        <h3>Bio:</h3>
-                        <textarea id="fpost" name="bio" id="bio" cols="30" rows="10" required>{{ User.bio }}</textarea>
-                        </div>
-                        <button class="button" type="submit">Update Profile</button>
-                    </form>
                 </div>
             </div>
         </div>

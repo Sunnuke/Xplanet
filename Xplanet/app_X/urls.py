@@ -18,7 +18,15 @@ urlpatterns = [
     path('comment', views.comment),
     path('delete', views.delete),
 
+    # LIKES/DISLIKES
+    path('delete', views.delete),
+
     # Settings
     path('settings', views.settings),
     path('update', views.update),
+
+    # Humans
+    path('humans', views.humans),
+    path('follow/<int:num>', views.follow),
+    path('unfollow/<int:num>', views.unfollow),
 ]
