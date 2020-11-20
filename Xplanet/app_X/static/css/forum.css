@@ -161,12 +161,14 @@ button:active {
     background-color: rgb(212, 212, 212);
     box-shadow: 0px 0px 5px 1px black;
     margin-bottom: 20px;
+    overflow: scroll;
 }
 .Phead{
     padding: 10px;
     background-color: rgb(212, 212, 212);
     box-shadow: 0px 0px 5px 1px black;
     margin-bottom: 15px;
+    overflow: scroll;
 }
 .delete {
     margin-top: 20px;

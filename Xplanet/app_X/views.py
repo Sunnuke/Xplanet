@@ -100,3 +100,26 @@ def delete(request):
     return redirect('/xplanet/forum')
 
 # Settings Page
+def settings(request):
+    if 'user' not in request.session:
+        return redirect('/xplanet/no_user')
+    context = {
+        'User': Profile.objects.get(id=request.session['user']),
+        'Following': Profile.objects.get(id=request.session['user']).following.all(),
+        'Followers': Profile.objects.get(id=request.session['user']).followers.all(),
+        'status': request.session['word']
+    }
+    return render(request, 'settings.html', context)
+
+def update(request):
+    errors = Profile.objects.valid_pro(request.POST)
+    if len(errors) > 0:
+        for key, val in errors.items():
+            messages.error(request, val)
+        return redirect('/success')
+    else:
+        profile = Profile.objects.get(id=request.session['user'])
+        profile.name=request.POST['name']
+        profile.bio=request.POST['bio']
+        profile.save()
+    return redirect('/xplanet/settings')

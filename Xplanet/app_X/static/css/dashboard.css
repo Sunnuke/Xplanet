@@ -203,3 +203,39 @@ nav ul li a{
     color: cyan;
     width: 100%;
 }
+#sign{
+    padding: 10px;
+    width: 500px;
+    height: 25px;
+    margin-bottom: 20px;
+}
+.button {
+    margin-left: 745px;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: rgb(122, 122, 122);
+    background-color: rgb(212, 212, 212);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 6px 6px 1px rgb(77, 77, 77);
+}
+
+.button:hover {
+    background-color: blue;
+}
+
+.button:active {
+    color: darkblue;
+    background-color: cyan;
+    box-shadow: 0px 3px 3px 0px gray;
+    transform: translateY(4px);
+}
+#fpost{
+    padding: 10px;
+    width: 700px;
+}

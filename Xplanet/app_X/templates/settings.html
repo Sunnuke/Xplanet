@@ -15,11 +15,11 @@
             <nav>
                 <ul>
                     <li><a href="/xplanet" class="li">Home</a></li>
-                    <li><a href="#" style="color: cyan;">Dashboard</a></li>
+                    <li><a href="/xplanet/dashboard" class="li">Dashboard</a></li>
                     <li><a href="/xplanet/" class="li">Humans</a></li>
                     <li><a href="/xplanet/forum" class="li">Forums</a></li>
                     <li><a href="/xplanet/" class="li">News</a></li>
-                    <li><a href="/xplanet/" class="li">Settings</a></li>
+                    <li><a href="#" style="color: cyan;">Settings</a></li>
                     <li>|</li>
                     <li><a href="/Logout" class="li">Log Out</a></li>
                 </ul>
@@ -61,93 +61,21 @@
             <!-- CONTENT -->
             <div id="contentBox">
                 <div class="userfo">
-                    <h1 style="margin-bottom: 20px;">Profile</h1>
-                    <h3 style="margin-bottom: 30px;">User Name: {{ User.name }}</h3>
-                    <h3>Bio:</h3>
-                    <div class="bio">
-                    <p>{{ User.bio }}</p>
+                    <div class="Phead">
+                        <h1 style="margin-bottom: 20px;">Profile</h1>
                     </div>
-                    <div class="quicklinks">
-                        <ul>
-                            <li>Dash links:</li>
-                            <li><a href="#upost">Your Posts</a></li>
-                            <li><a href="#liked">Posts You Liked</a></li>
-                            <li><a href="#comments">Comments You Made</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="uposts">
-                    <section id="post">
-                        <h1>Your Posts:</h1>
-                        {% if Posts %}
-                            {% for post in User.posts.all %}
-                            <div class="Phead">
-                                <h2>{{ post.title }} - <span style="font-size: 15px;">{{ post.profile.name }} | {{ post.created_at }}</span></h2>
-                            </div>
-                            <div class="Ptails">
-                                <p>{{ post.post }}</p>
-                            </div>
-                                <ul>
-                                    {% for comment in post.comments.all %}
-                                        <div class="Chead">
-                                            <h3>{{ comment.profile.name }} | {{ comment.created_at }}</h3>
-                                        </div>
-                                        <div class="Ctails">
-                                            <p>{{ comment.comment }}</p>
-                                        </div>
-                                    {% endfor %}
-                                </ul>
-                            {% endfor %}
-                        {% else %}
-                        <div class="Phead">
-                            <h2>You Have No Posts!</h2>
+                    <form action="/xplanet/update" method="POST">
+                        {% csrf_token %}
+                        <div class="Chead">
+                            <h3 style="margin-bottom: 30px;">Current User Name: {{ User.name }}</h3>
+                            <input id="sign" type="text" name="name" id="name" value="{{ User.name }}" required>
                         </div>
-                            {% endif %}
-                    </section>
-                    <section id="liked">
-                        <h1>Posts You Liked:</h1>
-                        {% if User_liked %}
-                            {% for like in User_liked.all %}
-                            <div class="Phead">
-                                <h2>{{ like.title }} <span>{{ like.profile.name }}</span></h2>
-                            </div>
-                            <div class="Ptails">
-                                <p>{{ like.post }}</p>
-                            </div>
-                            <ul>
-                                {% for comment in like.comments.all %}
-                                <div class="Phead">
-                                    <h3>{{ comment.profile.name }}</h3>
-                                </div>
-                                <div class="Ptails">
-                                    <p style="margin-bottom: 20px; min-height: 100px; border: 2px solid rgb(68, 68, 68); padding: 5px;">{{ comment.comment }}</p>
-                                </div>
-                                    {% endfor %}
-                            </ul>
-                            {% endfor %}
-                        {% else %}
-                        <div class="Phead">
-                            <h2>You Have Not Liked a Post!</h2>
+                        <div class="Chead">
+                        <h3>Bio:</h3>
+                        <textarea id="fpost" name="bio" id="bio" cols="30" rows="10" required>{{ User.bio }}</textarea>
                         </div>
-                            {% endif %}
-                    </section>
-                    <section id="comments">
-                        <h1>Comments You Made:</h1>
-                        {% if User_comments %}
-                            {% for comment in User_comments.all %}
-                            <div class="Phead">
-                                <h2>Post Name:{{ comment.post.title }} -<span style="font-size: 15px;">Owner:{{ comment.post.profile.name }}</span></h2>
-                            </div>
-                            <div class="Ptails">
-                                <p style="margin-bottom: 20px; min-height: 100px; border: 2px solid rgb(68, 68, 68); padding: 5px;">Your Comment: {{ comment.comment }}</p>
-                            </div>
-                                {% endfor %}
-                        {% else %}
-                        <div class="Phead">
-                            <h2>You Made No Comments!</h2>
-                        </div>
-                            {% endif %}
-                    </section>
+                        <button class="button" type="submit">Update Profile</button>
+                    </form>
                 </div>
             </div>
         </div>

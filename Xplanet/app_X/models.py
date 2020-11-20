@@ -26,6 +26,14 @@ class ProfileManager(models.Manager):
             errors['proname'] = "Your Profile Name Must Be at Least 3 characters Long!"
         return errors
 
+    def valid_pro(self, postData):
+        errors = {}
+        if len(postData['bio']) < 8:
+            errors['bio'] = "Your Biography Must Be at Least 8 characters Long!"
+        if len(postData['name']) < 3:
+            errors['name'] = "Your Profile Name Must Be at Least 3 characters Long!"
+        return errors
+
 # Profile
 class Profile(models.Model):
     name = models.CharField(max_length=30, default="New Comer")

@@ -19,5 +19,6 @@ urlpatterns = [
     path('delete', views.delete),
 
     # Settings
-    path('delete', views.delete),
+    path('settings', views.settings),
+    path('update', views.update),
 ]

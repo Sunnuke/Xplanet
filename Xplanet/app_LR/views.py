@@ -58,6 +58,8 @@ def login(request):
 
 # Registered/New Profile Name Route
 def success(request):
+    if 'user' not in request.session:
+        return redirect('/xplanet/no_user')
     context = {
         'User': Profile.objects.get(id=request.session['user']),
         'status': request.session['word']
