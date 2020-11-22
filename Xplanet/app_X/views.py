@@ -153,6 +153,11 @@ def update(request):
         if 2 == 2:
             profile.bio=request.POST['bio']
             profile.save()
+        if 3 == 3:
+            image = request.FILE['image']
+            print(image.name)
+            print(image.size)
+            # profile.save()
     return redirect('/xplanet/settings')
 
 # Humans Page

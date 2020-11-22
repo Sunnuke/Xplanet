@@ -84,15 +84,22 @@
                             </ul>
                         {% endif %}
                     </div>
-                    <form action="/xplanet/update" method="POST">
+                    <form action="/xplanet/update" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
+                        <div class="Chead">
+                            {% if User.image %}
+                            <img src="{{ User.image.url }}" alt="Your Profile Pic Here" style="width: 300px; height: 300px;"><br>
+                            {% endif %}
+                            <br><h3>Upload a Profile Picture</h3>
+                            <input type="file" name="image" id="image">
+                        </div>
                         <div class="Chead">
                             <h3 style="margin-bottom: 30px;">Current User Name: {{ User.name }}</h3>
                             <input id="sign" type="text" name="name" id="name" value="{{ User.name }}" required>
                         </div>
                         <div class="Chead">
-                        <h3>Bio:</h3>
-                        <textarea id="fpost" name="bio" id="bio" cols="30" rows="10" required>{{ User.bio }}</textarea>
+                            <h3>Bio:</h3>
+                            <textarea id="fpost" name="bio" id="bio" cols="30" rows="10" required>{{ User.bio }}</textarea>
                         </div>
                         <button class="button" type="submit">Update Profile</button>
                     </form>
