@@ -43,7 +43,7 @@ class Profile(models.Model):
     name = models.CharField(max_length=30, default="New Comer")
     bio  = models.TextField(default="This human is a New Comer! ...or is just to lazy to leave a comment in their Bio!")
     user = models.OneToOneField(User, related_name="user_profile", on_delete=models.CASCADE)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, upload_to="images/")
     following = models.ManyToManyField('self', related_name="you_followed", symmetrical=False)
     followers = models.ManyToManyField('self', related_name="who_follows", symmetrical=False)
     objects = ProfileManager()
