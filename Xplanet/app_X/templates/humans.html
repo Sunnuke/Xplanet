@@ -53,10 +53,20 @@
                                 {% for human in All %}
                                     {% if User not in human.followers.all %}
                                         {% if human.id != User.id %}
-                                            <li><a class="nofol" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a> | <a href="/xplanet/follow/{{human.id}}">Follow</a></li><br>
+                                            <div style="display: flex;">
+                                                {% if human.image %}
+                                                    <img src="{{ human.image.url }}" alt="Profile Pic of who your following" style="width: 50px; max-height: 50px; margin-right: 20px;"><br>
+                                                {% endif %}
+                                                <li><a class="nofol" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a> | <a href="/xplanet/follow/{{human.id}}">Follow</a></li>
+                                            </div><br>
                                         {% endif %}
                                     {% else %}
-                                        <li><a class="fol" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a> | <a href="/xplanet/unfollow/{{human.id}}">Un-Follow</a></li><br>
+                                        <div style="display: flex;">
+                                            {% if human.image %}
+                                                <img src="{{ human.image.url }}" alt="Profile Pic of who your following" style="width: 75px; max-height: 75px; margin-right: 20px;"><br>
+                                            {% endif %}
+                                            <li><a class="fol" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a> | <a href="/xplanet/unfollow/{{human.id}}">Un-Follow</a></li>
+                                        </div><br>
                                     {% endif %}
                                 {% endfor %}
                             {% else %}
@@ -71,7 +81,12 @@
                         <ul>
                             {% if Following %}
                                 {% for human in Following %}
-                                    <li><a class="folg" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li><br>
+                                    <div class="fghead" style="display: flex;">
+                                        {% if human.image %}
+                                            <img src="{{ human.image.url }}" alt="Profile Pic of who your following" style="width: 50px; max-height: 50px; margin-right: 20px;"><br>
+                                        {% endif %}
+                                        <li><a class="folg" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li>
+                                    </div><br>
                                 {% endfor %}
                             {% else %}
                                 <li>No humans here!</li>
@@ -85,7 +100,12 @@
                         <ul>
                             {% if Followers %}
                                 {% for human in Followers %}
-                                    <li><a class="fol" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li><br>
+                                    <div class="frhead" style="display: flex;">
+                                        {% if human.image %}
+                                            <img src="{{ human.image.url }}" alt="Profile Pic of who your following" style="width: 50px; max-height: 50px; margin-right: 20px;"><br>
+                                        {% endif %}
+                                        <li><a class="fol" href="/xplanet/viewhuman/{{ human.name }}">{{ human.name }}</a></li>
+                                    </div><br>
                                 {% endfor %}
                             {% else %}
                                 <li>No humans here!</li>
