@@ -139,25 +139,27 @@ def settings(request):
     return render(request, 'settings.html', context)
 
 def update(request):
+    print('Step: 1')
     profile = Profile.objects.get(id=request.session['user'])
-    if not profile.name == request.POST['name'] or profile.bio == request.POST['bio']:
-        errors = Profile.objects.valid_pro(request.POST)
-        if len(errors) > 0:
-            for key, val in errors.items():
-                messages.error(request, val)
+    errors = Profile.objects.valid_pro(request.POST, request.session)
+    if len(errors) > 0:
+        print('Step: 2')
+        for key, val in errors.items():
+            messages.error(request, val)
         return redirect('/xplanet/settings')
     else:
-        if 1 == 1:
+        print('Step: 3')
+        if 'name' in request.POST:
             profile.name=request.POST['name']
             profile.save()
-        if 2 == 2:
+        if 'bio' in request.POST:
             profile.bio=request.POST['bio']
             profile.save()
-        if 3 == 3:
-            image = request.FILE['image']
-            print(image.name)
-            print(image.size)
-            # profile.save()
+        if 'image' in request.FILES:
+            profile.image=request.FILES['image']
+            print(profile.image.name)
+            print(profile.image.size)
+            profile.save()
     return redirect('/xplanet/settings')
 
 # Humans Page

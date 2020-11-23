@@ -28,14 +28,19 @@ class ProfileManager(models.Manager):
             errors['proname'] = "Your Profile Name Must Be at Least 3 characters Long!"
         return errors
 
-    def valid_pro(self, postData):
+    def valid_pro(self, postData, sessionData):
         errors = {}
         if len(postData['bio']) < 8:
             errors['bio'] = "Your Biography Must Be at Least 8 characters Long!"
         if len(postData['name']) < 3:
             errors['name'] = "Your Profile Name Must Be at Least 3 characters Long!"
         if Profile.objects.filter(name=postData['name']):
-            errors['name'] = "Profile Name Taken by another User, Please Try Again!"
+            takenName = Profile.objects.get(name=postData['name'])
+            user = sessionData['user']
+            if takenName.id == user:
+                pass
+            else:
+                errors['name'] = "Profile Name Taken by another User, Please Try Again!"
         return errors
 
 # Profile

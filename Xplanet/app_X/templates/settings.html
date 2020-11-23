@@ -88,7 +88,7 @@
                         {% csrf_token %}
                         <div class="Chead">
                             {% if User.image %}
-                            <img src="{{ User.image.url }}" alt="Your Profile Pic Here" style="width: 300px; height: 300px;"><br>
+                            <img src="{{ User.image.url }}" alt="Your Profile Pic Here" style="width: 300px; max-height: 300px;"><br>
                             {% endif %}
                             <br><h3>Upload a Profile Picture</h3>
                             <input type="file" name="image" id="image">
