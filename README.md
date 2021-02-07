@@ -13,6 +13,12 @@ USERS PAGE
 FORUM PAGE
 <img src="/img/gifs/Forum.gif">
 
+Your posts (Title tag highlighted green); can view, edit, and delete (Lol and a secret like button when viewing):
+<img src="/img/urpost.JPG">
+
+A post from another user, that you follow (user name highlighted purple), with comments (Can; view, like, and comment):
+<img src="/img/fullpost.JPG">
+
 NEWS PAGE
 <img src="/img/gifs/News.gif">
 
@@ -24,12 +30,6 @@ LOGIN PAGE
 
 REGISTRATION PAGE
 <img src="/img/reg.JPG">
-
-Your posts (Title tag highlighted green); can view, edit, and delete (Lol and a secret like button when viewing):
-<img src="/img/urpost.JPG">
-
-A post from another user, that you follow (user name highlighted purple), with comments (Can; view, like, and comment):
-<img src="/img/fullpost.JPG">
 
 Error page for those who access the site and don't register or login:
 <img src="/img/error.JPG">
