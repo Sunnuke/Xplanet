@@ -17,10 +17,10 @@ NEWS PAGE
 <img src="/img/gifs/News.gif">
 
 SETTINGS PAGE
-<img src="/img/Settings.gif">
+<img src="/img/gifs/Settings.gif">
 
 LOGIN PAGE
-<img src="/img/gifs/log.JPG">
+<img src="/img/log.JPG">
 
 REGISTRATION PAGE
 <img src="/img/reg.JPG">
