@@ -1,5 +1,9 @@
 # Xplanet
-This is a freestyle; for this project I will create a full-stack build with python and django framework. My goals are to establish: a user database where user's can Post/Comment/like/dislike/follow other users, a news feed page for users to post/comment, and a news feed with videos of trending video games.
+
+Description:
+A Synthwave Styled social platform for gamers, enabling users to access curated gaming news and media, interact with other gamers, create and personalized private profile pages
+
+Objective; for this project I will create a full-stack build with python and django framework. My goals are to establish: a user database where user's can Post/Comment/like/dislike/follow other users, a forum page for users to post/comment, and a news feed with videos/pictures of trending video game topics.
 
 HOME PAGE
 <img src="/img/gifs/Home.gif">
